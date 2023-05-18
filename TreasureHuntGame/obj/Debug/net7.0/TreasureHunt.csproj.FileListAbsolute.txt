@@ -1,0 +1,15 @@
+D:\qbute\Documents\C#\Tresor\obj\Debug\net7.0\TreasureHunt.csproj.AssemblyReference.cache
+D:\qbute\Documents\C#\Tresor\obj\Debug\net7.0\TreasureHunt.GeneratedMSBuildEditorConfig.editorconfig
+D:\qbute\Documents\C#\Tresor\obj\Debug\net7.0\TreasureHunt.AssemblyInfoInputs.cache
+D:\qbute\Documents\C#\Tresor\obj\Debug\net7.0\TreasureHunt.AssemblyInfo.cs
+D:\qbute\Documents\C#\Tresor\obj\Debug\net7.0\TreasureHunt.csproj.CoreCompileInputs.cache
+D:\qbute\Documents\C#\Tresor\bin\Debug\net7.0\TreasureHunt.exe
+D:\qbute\Documents\C#\Tresor\bin\Debug\net7.0\TreasureHunt.deps.json
+D:\qbute\Documents\C#\Tresor\bin\Debug\net7.0\TreasureHunt.runtimeconfig.json
+D:\qbute\Documents\C#\Tresor\bin\Debug\net7.0\TreasureHunt.dll
+D:\qbute\Documents\C#\Tresor\bin\Debug\net7.0\TreasureHunt.pdb
+D:\qbute\Documents\C#\Tresor\obj\Debug\net7.0\TreasureHunt.dll
+D:\qbute\Documents\C#\Tresor\obj\Debug\net7.0\refint\TreasureHunt.dll
+D:\qbute\Documents\C#\Tresor\obj\Debug\net7.0\TreasureHunt.pdb
+D:\qbute\Documents\C#\Tresor\obj\Debug\net7.0\TreasureHunt.genruntimeconfig.cache
+D:\qbute\Documents\C#\Tresor\obj\Debug\net7.0\ref\TreasureHunt.dll
