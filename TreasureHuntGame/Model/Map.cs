@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TreasureHunt.Model;
 
-namespace Tresor.Model
+namespace TreasureHunt.Model
 {
     public class Map
     {
@@ -25,7 +25,6 @@ namespace Tresor.Model
                     MElements[x, y] = new Plain();
                 }
             }
-            GetMap();
 
         }
 
@@ -53,13 +52,14 @@ namespace Tresor.Model
 
         public void AddMountain(int x, int y)
         {
-            if (IsValidPosition(x,y))
+            
+            if (IsValidPosition(x,y) && MElements[x, y] is Plain)
                 MElements[x, y] = new Mountain();
         }
 
         public void AddTreasure(int x, int y, int nbTreasure)
         {
-            if (IsValidPosition(x,y))
+            if (IsValidPosition(x,y) && MElements[x, y] is Plain)
                 MElements[x, y] = new Treasure( nbTreasure);
         }
 
@@ -82,19 +82,7 @@ namespace Tresor.Model
             return x >= 0 && x < this.Width && y >= 0 && y < this.Height;
         }
 
-         public void GetMap()
-        {
-           
-            string map = "";
-            for (int y = 0; y < this.Height; y++)
-            {
-                for (int x = 0; x < this.Width; x++)
-                {
-                    Console.Write(MElements[x, y].Symbol + " ");
-                }
-             Console.WriteLine();
-            }
-        }
+      
 
     }
 }

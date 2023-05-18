@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "L3iHZzqBjUroYhBYsd6/0nle2GVQpsCNaUfZixBrk7yXYNuwyelmjVSx2u7lxvh+kB5TAeTiV/4ZuUN9WquDTw==",
+  "dgSpecHash": "5VVlrbQcFCRzWo25iXGokHuot8ys1lTiqv0nmplEzduHeFozMxr41gt4PhEuOuDKWo2J4GYzJVMQ17Bi66S5ZA==",
   "success": true,
-  "projectFilePath": "D:\\qbute\\Documents\\C#\\Tresor\\TreasureHunt.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\qbute\\Documents\\C#\\TreasureHunt\\TreasureHuntGame\\TreasureHunt.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\qbute\\.nuget\\packages\\fluentassertions\\6.11.0\\fluentassertions.6.11.0.nupkg.sha512",
+    "C:\\Users\\qbute\\.nuget\\packages\\system.configuration.configurationmanager\\4.4.0\\system.configuration.configurationmanager.4.4.0.nupkg.sha512",
+    "C:\\Users\\qbute\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.4.0\\system.security.cryptography.protecteddata.4.4.0.nupkg.sha512"
+  ],
   "logs": []
 }

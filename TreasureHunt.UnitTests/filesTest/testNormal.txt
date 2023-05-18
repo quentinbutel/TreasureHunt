@@ -1,0 +1,4 @@
+C - 5 - 5
+M - 1 - 1
+T - 2 - 2 - 3
+A - Indiana - 3 - 3 - N - AGAADADA

@@ -1,35 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Tresor.Model;
+using TreasureHunt.View;
+using TreasureHunt.Model;
 
 namespace TreasureHunt.Controller
 {
     public class Game
     {
-
-        private List<Adventurer> adventurers;
-        private Map map;
-       
-
+        public List<Adventurer> Adventurers { get; set; }
+        public Map Map { get; set; }
+        
+        public ConsoleView ConsoleView { get; set; }
         public Game()
         {
-            adventurers = new List<Adventurer>();
+            ConsoleView = new();
+            Adventurers = new List<Adventurer>();
         }
-        public void StartGame()
-        {
-            try
-            {
-                // Chemin du fichier à lire
-                string projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-                string filesDirectory = Path.Combine(projectDirectory, "filesTest");
-                string cheminFichier = Path.Combine(filesDirectory, "test1.txt");
 
-                // Utilisation de StreamReader pour lire le fichier
-                using (StreamReader sr = new StreamReader(cheminFichier))
+        
+        public void StartGame(string filePath)
+        {
+             
+
+                using (StreamReader sr = new StreamReader(filePath))
                 {
                     string line;
                    
@@ -39,17 +37,20 @@ namespace TreasureHunt.Controller
                         switch (lineContent[0])
                         {
                             case "C":
-                                map = new Map(int.Parse(lineContent[1]), int.Parse(lineContent[2]));
+                                if (lineContent.Length == 3)
+                                    Map = new Map(int.Parse(lineContent[1]), int.Parse(lineContent[2]));
                                 break;
                             case "M":
-                                map.AddMountain(int.Parse(lineContent[1]), int.Parse(lineContent[2]));
+                                if (Map != null && lineContent.Length == 3)
+                                    Map.AddMountain(int.Parse(lineContent[1]), int.Parse(lineContent[2]));
                                 break;
                             case "T":
-                                map.AddTreasure(int.Parse(lineContent[1]), int.Parse(lineContent[2]), int.Parse(lineContent[3]));
+                                if (Map != null && lineContent.Length == 4)
+                                    Map.AddTreasure(int.Parse(lineContent[1]), int.Parse(lineContent[2]), int.Parse(lineContent[3]));
                                 break;
                             case "A":
-
-                                adventurers.Add(new Adventurer(lineContent[1], int.Parse(lineContent[2]), int.Parse(lineContent[3]),  (Orientation)Enum.Parse(typeof(Orientation), lineContent[4]), lineContent[5]));
+                                if ( lineContent.Length == 6)
+                                Adventurers.Add(new Adventurer(lineContent[1], int.Parse(lineContent[2]), int.Parse(lineContent[3]),  (Orientation)Enum.Parse(typeof(Orientation), lineContent[4]), lineContent[5]));
                                break;
                             default:
                                 break;
@@ -57,24 +58,20 @@ namespace TreasureHunt.Controller
                         
 
                     }
-                    GetMap();
+                   Console.WriteLine( ConsoleView.GetMapContent(Map, Adventurers));
                 }
             }
-            catch (Exception e)
-            {
-                // Gestion des erreurs
-                Console.WriteLine("Une erreur s'est produite : " + e.Message);
-            }
-        }
+            
         
         public void PlayGame()
         {
             bool stopPlay = false;
-           
+            if (Map == null)
+                stopPlay = true;
             while (!stopPlay)
             {
                 stopPlay = true;
-                foreach (Adventurer adventurer in adventurers)
+                foreach (Adventurer adventurer in Adventurers)
                 {
                     
                         if (adventurer.MovementsSequence.Count > 0)
@@ -86,12 +83,8 @@ namespace TreasureHunt.Controller
                     
                 }
             }
-            foreach (Adventurer adventurer in adventurers)
-            {
-                Console.WriteLine(adventurer.Name + " " + adventurer.X + " " + adventurer.Y + " " + adventurer.NbTreasureTaken);
-            }
-            GetMap();
 
+            Console.WriteLine(ConsoleView.GetMapContent(Map, Adventurers));
 
 
 
@@ -172,46 +165,58 @@ namespace TreasureHunt.Controller
                 default:
                     break;
             }
-            GetMap();
             adventurer.MovementsSequence.RemoveAt(0);
         }
         public bool CanMove(int x, int y)
         {
-            bool isAdventurer = adventurers.Any(adventurer => adventurer.X == x && adventurer.Y == y);
+            bool isAdventurer = Adventurers.Any(adventurer => adventurer.X == x && adventurer.Y == y);
 
-            if (map.IsAccessible(x, y) && !isAdventurer)
+            if (Map.IsAccessible(x, y) && !isAdventurer)
                 return true;
 
             return false;
         }
 
-        public void GetMap()
-        {
-
-            string map = "";
-            
-            for (int y = 0; y < this.map.Height; y++)
-            {
-                for (int x = 0; x < this.map.Width; x++)
-                {
-                    bool isAdventurer = adventurers.Any(adventurer => adventurer.X == x && adventurer.Y == y);
-                    if (isAdventurer)
-                        Console.Write("A" + adventurers.Find(adventurer => adventurer.X == x && adventurer.Y == y).Name.ToLower().First() + " ");
-                    else
-                        Console.Write(this.map.MElements[x, y].Symbol + " ");
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-
-        }
+       
 
         private void AddTreasureToAdventurer(Adventurer adventurer)
         {
-            if (map.IsTreasure(adventurer.X, adventurer.Y))
+            if (Map.IsTreasure(adventurer.X, adventurer.Y))
             {
-                map.RemoveTreasure(adventurer.X, adventurer.Y);
+                Map.RemoveTreasure(adventurer.X, adventurer.Y);
                 adventurer.NbTreasureTaken++;
+            }
+        }
+
+        public void WriteOutputFile(string filePath)
+        {
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                sw.WriteLine($"C - {Map.Width} - {Map.Height}");
+                for (int y = 0; y < Map.Height; y++)
+                {
+                    for (int x = 0; x < Map.Width; x++)
+                    {
+                        switch (Map.MElements[x, y])
+                        {
+                            case Mountain mountain:
+                                sw.WriteLine($"M - {x} - {y}");
+
+                                break;
+                            case Treasure treasure:
+                                sw.WriteLine($"T - {x} - {y} - {treasure.NbTreasure}");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    Console.WriteLine();
+                }
+                foreach (Adventurer adventurer in Adventurers)
+                {
+                    // Écrire les informations de l'aventurier dans le fichier
+                    sw.WriteLine($"A - {adventurer.Name} - {adventurer.X} - {adventurer.Y} - {adventurer.Orientation} - {adventurer.NbTreasureTaken}");
+                }
             }
         }
     }

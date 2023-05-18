@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreasureHunt", "TreasureHunt.csproj", "{526A3BA9-1FB8-497F-ABCB-93A22E6B6E09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTreasureHunt", "..\TestTreasureHunt\TestTreasureHunt.csproj", "{22BF2E27-96DF-459E-86BE-5E750EFD97F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureHunt.UnitTests", "..\TreasureHunt.UnitTests\TreasureHunt.UnitTests.csproj", "{3716F8DD-584C-4062-ACC8-70F72BCF87F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{526A3BA9-1FB8-497F-ABCB-93A22E6B6E09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{526A3BA9-1FB8-497F-ABCB-93A22E6B6E09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{526A3BA9-1FB8-497F-ABCB-93A22E6B6E09}.Release|Any CPU.Build.0 = Release|Any CPU
-		{22BF2E27-96DF-459E-86BE-5E750EFD97F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{22BF2E27-96DF-459E-86BE-5E750EFD97F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{22BF2E27-96DF-459E-86BE-5E750EFD97F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{22BF2E27-96DF-459E-86BE-5E750EFD97F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3716F8DD-584C-4062-ACC8-70F72BCF87F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3716F8DD-584C-4062-ACC8-70F72BCF87F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3716F8DD-584C-4062-ACC8-70F72BCF87F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3716F8DD-584C-4062-ACC8-70F72BCF87F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

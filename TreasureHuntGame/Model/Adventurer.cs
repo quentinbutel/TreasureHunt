@@ -5,7 +5,7 @@ using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tresor.Model
+namespace TreasureHunt.Model
 {
     public class Adventurer
     {
@@ -29,7 +29,6 @@ namespace Tresor.Model
         }
 
 
-         
         
    
 
